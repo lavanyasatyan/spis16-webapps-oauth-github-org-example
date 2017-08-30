@@ -147,6 +147,8 @@ def renderPage2():
 def get_github_oauth_token():
     return session.get('github_token')
 
+client = MongoClient('mongodb://<dbuser>:<dbpassword>@ds115214.mlab.com:15214/test-db')
+   
 
 if __name__ == '__main__':
     app.run()
