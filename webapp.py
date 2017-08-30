@@ -3,6 +3,7 @@ from flask_oauthlib.client import OAuth
 from flask import render_template, flash, Markup
 
 from github import Github
+from pymongo import MongoClient
 
 import pprint
 import os
