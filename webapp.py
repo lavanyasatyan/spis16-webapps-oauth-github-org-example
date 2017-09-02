@@ -141,10 +141,10 @@ def renderPage1():
 @app.route('/list',methods=['POST'])
 def renderList():
    message = request.form.get("message")
-   login = session['user_data']['login']    
-   mongo.test-db.messages.insert_one(
-                   {"message":message, 
-                    "login":login })
+   #login = session['user_data']['login']    
+   #mongo.test-db.messages.insert_one(
+   #                {"message":message, 
+   #                 "login":login })
    #userinputs = [x for x in mongo.test-db.messages.find({'login':login})]
    return render_template('list.html')
 
