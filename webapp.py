@@ -141,7 +141,7 @@ def renderPage1():
 def renderList():
    message = request.args['message']
    login = session['user_data']['login']    
-   mongo.db.messages.insert_one(
+   mongo.db.messages.insert(
                    {'message':message, 
                     'login':login })
    userinputs = [x for x in mongo.db.messages.find()]
