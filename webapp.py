@@ -140,7 +140,7 @@ def renderPage1():
 
 @app.route('/list')
 def renderList():
-   message = request.form.get("message")
+   message = request.form.get('message')
    login = session['user_data']['login']    
    mongo.db.mycollection.insert_one(
                    {"message":message, 
