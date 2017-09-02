@@ -142,10 +142,10 @@ def renderPage1():
 def renderList():
    message = request.args['message']
    login = session['user_data']['login']    
-   mongo.db.mycollection.insert_one(
+   mongo.db.messages.insert_one(
                    {'message':message, 
                     'login':login })
-   userinputs = [x for x in mongo.db.mycollection.find()]
+   userinputs = [x for x in mongo.db.messages.find()]
    return render_template('list.html',userinputs=userinputs)
 
 @app.route('/page2')
