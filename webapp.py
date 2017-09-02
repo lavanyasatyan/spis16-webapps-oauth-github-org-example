@@ -58,9 +58,6 @@ github = oauth.remote_app(
     authorize_url='https://github.com/login/oauth/authorize'
 )
 
-#client = MongoClient('mongodb://dbuser1:weaf8jawel8f8waefjawe8fjlaw8fhalwifhaw3@ds115214.mlab.com:15214/test-db')
-#collection = test-db.messages   
-
 @app.context_processor
 def inject_logged_in():
     return dict(logged_in=('github_token' in session))
@@ -142,18 +139,13 @@ def renderPage1():
         user_data_pprint = '';
     return render_template('page1.html',dump_user_data=user_data_pprint)
 
-@app.route('/add')
-def renderAdd():
+@app.route('/list')
+def renderList():
    message = request.form.get("message")
    login = session['user_data']['login']    
    result = mongo.test-db.messages.insert_one(
                    {"message":message, 
                     "login":login })
-   return redirect(url_for('list'))
-
-@app.route('/list')
-def renderList():
-   login = session['user_data']['login']
    userinputs = [x for x in mongo.test-db.messages.find({'login':login})]
    return render_template('list.html',userinputs = userinputs,login=login)
 
