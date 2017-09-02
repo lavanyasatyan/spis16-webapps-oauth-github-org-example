@@ -1,10 +1,12 @@
 {% extends "layout.html" %}
 
-{% block title %}page1{% endblock %} <br>
+{% block title %}page1{% endblock %}
 
 {% block content %}
 
-<h1>Messages
+<h1>Messages <br> </h1>
+
+<p>
 
 {% for userinput in userinputs %}
 
@@ -12,7 +14,7 @@
 
 {% endfor %}
 
-</h1>
+</p>
 
 
 {% endblock %}
