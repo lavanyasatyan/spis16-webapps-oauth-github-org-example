@@ -30,13 +30,13 @@ app = Flask(__name__)
 
 app.debug = False
 
-app.secret_key = os.environ['APP_SECRET_KEY']
 oauth = OAuth(app)
 
 # This code originally from https://github.com/lepture/flask-oauthlib/blob/master/example/github.py
 # Edited by P. Conrad for SPIS 2016 to add getting Client Id and Secret from
 # environment variables, so that this will work on Heroku.
 
+app.secret_key = os.environ['APP_SECRET_KEY']
 app.config['MONGO_HOST'] = os.environ['MONGO_HOST']
 app.config['MONGO_PORT'] = int(os.environ['MONGO_PORT'])
 app.config['MONGO_DBNAME'] = os.environ['MONGO_DBNAME']
