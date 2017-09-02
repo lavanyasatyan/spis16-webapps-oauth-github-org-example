@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}page1{% endblock %}
+
+{% block content %}
+
+<h1>Messages</h1>
+
+{% for userinput in userinputs %}
+
+{{userinput.login}}
+
+{{userinput.message}}
+
+{% endfor %}
+
+{% endblock %}

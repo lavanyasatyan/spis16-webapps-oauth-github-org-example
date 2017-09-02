@@ -36,6 +36,12 @@ oauth = OAuth(app)
 # Edited by P. Conrad for SPIS 2016 to add getting Client Id and Secret from
 # environment variables, so that this will work on Heroku.
 
+app.config['MONGO_HOST'] = os.environ['MONGO_HOST']
+app.config['MONGO_PORT'] = int(os.environ['MONGO_PORT'])
+app.config['MONGO_DBNAME'] = os.environ['MONGO_DBNAME']
+app.config['MONGO_USERNAME'] = os.environ['MONGO_USERNAME']
+app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
+mongo = PyMongo(app)
 
 github = oauth.remote_app(
     'github',
@@ -49,6 +55,8 @@ github = oauth.remote_app(
     authorize_url='https://github.com/login/oauth/authorize'
 )
 
+client = MongoClient('mongodb://<dbuser>:<dbpassword>@ds115214.mlab.com:15214/test-db')
+collection = test-db.messages   
 
 @app.context_processor
 def inject_logged_in():
@@ -72,13 +80,6 @@ def logout():
     session.clear()
     flash('You were logged out')
     return redirect(url_for('home'))
-
-
-#@app.route('/logout')
-#def logout():
-#    session.pop('github_token', None)
-#    return redirect(url_for('index'))
-
 
 @app.route('/login/authorized')
 def authorized():
@@ -138,6 +139,21 @@ def renderPage1():
         user_data_pprint = '';
     return render_template('page1.html',dump_user_data=user_data_pprint)
 
+@app.route('/add')
+def renderAdd():
+   message = request.form.get("message")
+   login = session['user_data']['login']    
+   result = mongo.collection.insert_one(
+                   {"message":message, 
+                    "login":login })
+   return redirect(url_for('list'))
+
+@app.route('/list')
+def renderList():
+   login = session['user_data']['login']
+   userinputs = [x for x in mongo.collection.find({'login':login})]
+   return render_template('list.html',userinputs = userinputs,login=login)
+
 @app.route('/page2')
 def renderPage2():
     return render_template('page2.html')
@@ -148,7 +164,7 @@ def get_github_oauth_token():
     return session.get('github_token')
 
 client = MongoClient('mongodb://<dbuser>:<dbpassword>@ds115214.mlab.com:15214/test-db')
-   
+collection = test-db.messages   
 
 if __name__ == '__main__':
     app.run()
