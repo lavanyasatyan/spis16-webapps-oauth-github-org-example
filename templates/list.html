@@ -4,6 +4,15 @@
 
 {% block content %}
 
-<h1>Messages</h1>
+<h1>Messages
+
+{% for userinput in userinputs %}
+
+{{ userinput.message }}
+
+{% endfor %}
+
+</h1>
+
 
 {% endblock %}
