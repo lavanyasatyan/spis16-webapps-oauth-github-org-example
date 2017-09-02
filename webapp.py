@@ -3,7 +3,6 @@ from flask_oauthlib.client import OAuth
 from flask import render_template, flash, Markup
 
 from github import Github
-#from pymongo import MongoClient
 
 from flask_pymongo import PyMongo
 from flask_pymongo import ObjectId
@@ -143,10 +142,10 @@ def renderPage1():
 def renderList():
    message = request.form.get("message")
    login = session['user_data']['login']    
-   result = mongo.test-db.messages.insert_one(
+   mongo.test-db.messages.insert_one(
                    {"message":message, 
                     "login":login })
-   userinputs = [x for x in mongo.test-db.messages.find({'login':login})]
+   #userinputs = [x for x in mongo.test-db.messages.find({'login':login})]
    return render_template('list.html',userinputs = userinputs,login=login)
 
 @app.route('/page2')
