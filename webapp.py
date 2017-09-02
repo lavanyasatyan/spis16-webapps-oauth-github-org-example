@@ -5,7 +5,6 @@ from flask import render_template, flash, Markup
 from github import Github
 
 from flask_pymongo import PyMongo
-from flask_pymongo import ObjectId
 
 import pprint
 import os
