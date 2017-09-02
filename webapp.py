@@ -142,9 +142,9 @@ def renderPage1():
 def renderList():
    message = request.form.get("message")
    login = session['user_data']['login']    
-   #mongo.test-db.messages.insert_one(
-   #                {"message":message, 
-   #                 "login":login })
+   mongo.db.mycollection.insert_one(
+                   {"message":message, 
+                    "login":login })
    #userinputs = [x for x in mongo.test-db.messages.find({'login':login})]
    return render_template('list.html')
 
