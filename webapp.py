@@ -146,7 +146,7 @@ def renderList():
                    {"message":message, 
                     "login":login })
    #userinputs = [x for x in mongo.test-db.messages.find({'login':login})]
-   return render_template('list.html',login=login)
+   return render_template('list.html')
 
 @app.route('/page2')
 def renderPage2():
