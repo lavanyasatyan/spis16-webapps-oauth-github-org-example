@@ -144,8 +144,8 @@ def renderList():
    mongo.db.messages.insert(
                    {'message':message, 
                     'login':login })
-   userinputs = [x for x in mongo.db.messages.find()]
-   return render_template('list.html',userinputs=userinputs)
+   total = [x for x in mongo.db.messages.find()]
+   return render_template('list.html',total=total)
 
 @app.route('/page2')
 def renderPage2():
