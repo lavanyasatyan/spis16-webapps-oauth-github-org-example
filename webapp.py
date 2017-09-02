@@ -55,7 +55,7 @@ github = oauth.remote_app(
     authorize_url='https://github.com/login/oauth/authorize'
 )
 
-#client = MongoClient('mongodb://<dbuser>:<dbpassword>@ds115214.mlab.com:15214/test-db')
+client = MongoClient('mongodb://dbuser1:weaf8jawel8f8waefjawe8fjlaw8fhalwifhaw3@ds115214.mlab.com:15214/test-db')
 #collection = test-db.messages   
 
 @app.context_processor
